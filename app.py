@@ -16,7 +16,8 @@ def index():
     if request.method == 'POST':
         selected_code = request.form['currency']
         amount = float(request.form['amount'])
-        rate = next((r for r in rates if r['code'] == selected_code), None)
+        rate = rates_dict.get(selected_code)
+        
 
         if rate:
             result = round(amount * rate['ask'], 2)
